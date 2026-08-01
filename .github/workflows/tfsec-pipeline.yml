@@ -1,0 +1,19 @@
+name: Security Quality Gate
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tfsec_scan:
+    name: tfsec SAST Scanner
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          soft_fail: true
